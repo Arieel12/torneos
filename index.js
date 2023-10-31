@@ -8,6 +8,8 @@ const port = 3000;
 
 app.use(bodyParser.json());
 
+const db = conexion();
+
 app.get('/torneos', (req, res) => {
   /*busca_torneos()
     .then(result =>{
@@ -19,10 +21,12 @@ app.get('/torneos', (req, res) => {
 app.post('/torneos', (req, res) =>{
   const nuevoTorneo = req.body;
   console.log(nuevoTorneo);
-  conexion.crear_torneo(nuevoTorneo)
+  db.crear_torneo(nuevoTorneo)
     .then(()=>{
       res.json({"mensaje": "Nuevo Torneo Creado"});
+      console.log("prueba")
     }).catch(e => {
+      console.log("pruebacatch")
       res.status(500).json(e);
     })
 })

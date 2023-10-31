@@ -13,9 +13,8 @@ const conexion = () =>{
 
   const table = 'torneos';
 
-  const crear_torneo = ({id, nombre}) =>{
+  const crear_torneo = ({nombre}) =>{
     return knex(table).insert({
-      id: id,
       nombre: nombre
     });
   }
@@ -23,6 +22,6 @@ const conexion = () =>{
     crear_torneo
   }
 }
-module.export = {
+module.exports = {
   conexion
 }
