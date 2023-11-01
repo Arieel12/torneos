@@ -35,10 +35,21 @@ const conexion = () => {
     });
   };
 
+  const actualizar_torneo_byid = ({ nombre, id }, callback) => {
+    const sql = `UPDATE torneos SET nombre = ? WHERE id = ?`;
+    connection.query(sql, [nombre, id], (error, results) => {
+      if (error) {
+        callback(error, null);
+      } else {
+        callback(null, results);
+      }
+    });
+  };
 
   return {
     crear_torneo,
-    mostrar_torneos
+    mostrar_torneos,
+    actualizar_torneo_byid
   };
 };
 

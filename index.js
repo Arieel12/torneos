@@ -26,10 +26,20 @@ app.get('/torneos', (req, res) => {
     if (error) {
       res.status(500).json(error);
     } else {
-      res.sendFile(__dirname + '/index.html'); // Enviar la página HTML
+      res.json(results);
     }
   });
 });
+
+app.put('/torneos', (req, res) =>{
+  db.actualizar_torneo_byid((error, results)=>{
+    if(error){
+      res.status(500).json(error);
+    } else{
+      res.json({mensaje: 'Torneo Actualizado Correctamente', results});
+    }
+  })
+})
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
